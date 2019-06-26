@@ -44,7 +44,7 @@ qiblahDirectionSub:Subscription;
       });
 
 this.compassDirectionSub = this.qiblahService.compassHeading.subscribe(direction=>{
-  this.compassDirection = direction;
+  this.compassDirection = Math.ceil( direction);
   this.setCompassDirection();
   });
 
