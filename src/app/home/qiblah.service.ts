@@ -16,7 +16,6 @@ export class QiblahService {
 
   private _compassHeading = new BehaviorSubject<number>(0);
 
- // private _enabledGPS = new BehaviorSubject<boolean>(false);
 
 
 
