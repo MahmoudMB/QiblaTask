@@ -95,6 +95,7 @@ if (this.compassDirectionSub)
   setCompassDirection(){
     if (this.isDeviceHorizontal){
     var dig = (this.qiblahDirection - this.compassDirection)
+  
     this.arrow.nativeElement.style.webkitTransform = "rotate("+ dig +"deg)";
     this.arrow.nativeElement.style.transform = "rotate("+ dig +"deg)";
     }
