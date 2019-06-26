@@ -1,1 +1,46 @@
 
+
+.compass {
+    position: absolute;
+	z-index: 200;
+
+	width: 260px;
+	height: 260px;
+	background-size: 100%;
+}
+
+.arrow {
+	position: absolute;
+	z-index: 1000;
+	width: 260px;
+	height: 260px;
+	background-size: 100%;
+}
+
+
+.circle{
+
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    font-size: 50px;
+    color: #fff;
+    line-height: 250px;
+margin: auto;
+    border:1px solid brown;
+    top: 70%;
+
+ 
+}
+
+
+
+.notHorz{
+
+    position: fixed;
+width: 100%;
+height: 100%;
+top: 50%;
+text-align: center;
+margin: auto
+}

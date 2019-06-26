@@ -1,0 +1,7 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "qiblah_Task",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

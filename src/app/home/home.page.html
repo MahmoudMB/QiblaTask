@@ -1,14 +1,35 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
+  <ion-toolbar color="tertiary">
+    <ion-title text-center>
+        Qibla: {{ qiblahDirection }} &#8451;
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+
+<div *ngIf="!isDeviceHorizontal" class="notHorz">
+
+  <p>Place your device on horizontal flat surface </p>
+
+</div>
+
+
+<ion-grid text-center  *ngIf="isDeviceHorizontal">
+  <ion-row text-center >
+    <ion-col text-center >
+        <div class="circle">
+            <div #arrow class="arrow">
+               
+              <ion-img src="../assets/arrow.svg"></ion-img>
+        
+            </div>
+          </div>   
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
 </ion-content>
