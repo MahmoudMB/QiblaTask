@@ -27,6 +27,7 @@ dir = 0;
 
 
 compassDirection = 0;
+
 qiblahDirection  = 0;
 isDeviceHorizontal = false;
 isEnablesGps = true;
@@ -35,6 +36,7 @@ isEnablesGps = true;
 compassDirectionSub:Subscription;
 qiblahDirectionSub:Subscription;
 
+compassDirectionRounded = 0;
 
   ngOnInit() {
 
@@ -44,7 +46,8 @@ qiblahDirectionSub:Subscription;
       });
 
 this.compassDirectionSub = this.qiblahService.compassHeading.subscribe(direction=>{
-  this.compassDirection = Math.ceil( direction);
+  this.compassDirection = direction;
+  this.compassDirectionRounded = Math.ceil(direction);
   this.setCompassDirection();
   });
 
