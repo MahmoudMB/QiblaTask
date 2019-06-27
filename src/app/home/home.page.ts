@@ -41,12 +41,7 @@ qiblahDirectionSub:Subscription;
 compassDirectionRounded = 0;
 
   ngOnInit() {
-/*
-    this.qiblahDirectionSub = this.qiblahService.qiblahDirection.subscribe(direction=>{
-      this.qiblahDirection = direction;
-       this.setCompassDirection();
-      });
-*/
+
 
 this.enableGPS();
 
@@ -142,7 +137,7 @@ else
      handler: () => {
     this.enableGPS();
      }
-    }]}).then(alertElm=>{
+    }],backdropDismiss:false}).then(alertElm=>{
      alertElm.present();
     
     })
