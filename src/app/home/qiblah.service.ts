@@ -91,7 +91,7 @@ this.deviceOrientation.getCurrentHeading().then(
 
 
 
-var subscription = this.deviceOrientation.watchHeading().subscribe(
+this.deviceOrientation.watchHeading().subscribe(
   (data: DeviceOrientationCompassHeading) => {
     
   
@@ -117,8 +117,8 @@ var subscription = this.deviceOrientation.watchHeading().subscribe(
     var  lon_K = 39.8262 * Math.PI/180.0;
     var lat_P = lat*Math.PI/180.0;
     var lon_P = lon*Math.PI/180.0;
-    var psi = 180.0/Math.PI * Math.atan2(Math.sin(lon_K-lon_P),Math.cos(lat_P)*Math.tan(lat_K)-Math.sin(lat_P)*Math.cos(lon_K-lon_P));
-    return psi;
+    return  180.0/Math.PI * Math.atan2(Math.sin(lon_K-lon_P),Math.cos(lat_P)*Math.tan(lat_K)-Math.sin(lat_P)*Math.cos(lon_K-lon_P));
+    
 
   }
 
