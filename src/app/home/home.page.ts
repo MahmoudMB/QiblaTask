@@ -6,6 +6,7 @@ import { Plugins} from '@capacitor/core';
 import { ToastController, AlertController } from '@ionic/angular';
 import { ToastOptions } from '@ionic/core';
 
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomePage implements OnInit ,OnDestroy{
   @ViewChild('arrow') arrow: ElementRef;
 
   
-  constructor(private qiblahService:QiblahService,private alert:AlertController) {}
+  constructor(private qiblahService:QiblahService,private alert:AlertController,private diagnostic:Diagnostic) {}
 lat = 0;
 lan = 0;
 dir = 0;
@@ -30,7 +31,8 @@ compassDirection = 0;
 
 qiblahDirection  = 0;
 isDeviceHorizontal = false;
-isEnablesGps = true;
+isGPSEnabled = false;
+islocationAuthorized =  false;
 
 
 compassDirectionSub:Subscription;
@@ -39,11 +41,19 @@ qiblahDirectionSub:Subscription;
 compassDirectionRounded = 0;
 
   ngOnInit() {
-
+/*
     this.qiblahDirectionSub = this.qiblahService.qiblahDirection.subscribe(direction=>{
       this.qiblahDirection = direction;
        this.setCompassDirection();
       });
+*/
+
+this.enableGPS();
+
+this.qiblahDirectionSub = this.qiblahService.qiblahDirection.subscribe(direction=>{
+  this.qiblahDirection = direction;
+   this.setCompassDirection();
+  });
 
 this.compassDirectionSub = this.qiblahService.compassHeading.subscribe(direction=>{
   this.compassDirection = direction;
@@ -54,9 +64,9 @@ this.compassDirectionSub = this.qiblahService.compassHeading.subscribe(direction
 
 
 this.qiblahService.getCompassHeading();
-this.qiblahService.getQiblahDirection();
 
 
+  
 
 Plugins.Motion.addListener("orientation",(res)=>{
 
@@ -76,6 +86,70 @@ else
 
   }
 
+  async enableGPS(){
+
+   this.isGPSEnabled = await this.diagnostic.isLocationEnabled();
+
+  this.islocationAuthorized  =  await this.diagnostic.isLocationAuthorized();
+
+
+  if (!this.isGPSEnabled )
+  {
+    this.showEnableGPSMessage();
+  }
+
+  else if (!this.islocationAuthorized)
+  {
+    this.requestLocationAuthorization();
+  }
+
+  else {
+    this.qiblahService.getQiblahDirection();
+  }
+
+
+  }
+
+  requestLocationAuthorization(){
+    this.diagnostic.requestLocationAuthorization().then(status=>{
+      switch(status){
+        case this.diagnostic.permissionStatus.NOT_REQUESTED:
+            console.log("Permission not requested");
+            break;
+        case this.diagnostic.permissionStatus.GRANTED:
+            console.log("Permission granted");
+            this.islocationAuthorized = true;
+            this.enableGPS();
+            break;
+        case this.diagnostic.permissionStatus.DENIED:
+            console.log("Permission denied");
+            this.islocationAuthorized = false;
+
+            break;
+        case this.diagnostic.permissionStatus.DENIED_ALWAYS:
+            console.log("Permission permanently denied");
+            this.islocationAuthorized = false;
+            break;
+    }
+
+    });
+  }
+
+  showEnableGPSMessage(){
+    this.alert.create({message:'Enable GPS', buttons: [  
+      {
+     text: 'OK',
+     handler: () => {
+    this.enableGPS();
+     }
+    }]}).then(alertElm=>{
+     alertElm.present();
+    
+    })
+
+
+  }
+
   ngOnDestroy(){
 if (this.qiblahDirectionSub)
 {
@@ -89,6 +163,7 @@ if (this.compassDirectionSub)
 
 
   }
+
 
 
 

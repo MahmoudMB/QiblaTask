@@ -86,8 +86,6 @@ this.deviceOrientation.getCurrentHeading().then(
   },
   (error: any) => {
     console.log(error)
-
-  
   }
 );
 

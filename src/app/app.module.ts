@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { DeviceOrientation, DeviceOrientationCompassHeading } from '@ionic-native/device-orientation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
-import { Diagnostic } from '@ionic-native/diagnostic';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +21,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
     DeviceOrientation,
     LocationAccuracy,
     Geolocation,
+    Diagnostic,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

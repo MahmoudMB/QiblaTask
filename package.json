@@ -34,6 +34,7 @@
     "cordova-android-support-gradle-release": "^3.0.1",
     "cordova-plugin-device-orientation": "2.0.1",
     "cordova-plugin-request-location-accuracy": "2.3.0",
+    "cordova.plugins.diagnostic": "5.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
@@ -70,7 +71,8 @@
     "plugins": {
       "cordova-plugin-device-orientation": {},
       "cordova-plugin-request-location-accuracy": {},
-      "cordova-android-support-gradle-release": {}
+      "cordova-android-support-gradle-release": {},
+      "cordova.plugins.diagnostic": {}
     }
   }
 }
